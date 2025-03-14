@@ -1,0 +1,300 @@
+import java.util.*;
+class TicTacToe_MvS
+{
+    
+    Scanner in=new Scanner(System.in);
+    char xox[][]=new char[3][3];
+    int i,j,position=0,k;
+    char team,comp;
+    TicTacToe_MvS()
+    {                           //initializing the grid with '_'
+         for(i=0;i<3;i++)
+        {
+            for(j=0;j<3;j++)
+            xox[i][j]='_';
+        }}
+    void print()
+    {                            //printing the game board
+        for(i=0;i<3;i++)                                      
+        {
+            for(j=0;j<3;j++)
+            {
+                if(j!=2)
+                System.out.print(xox[i][j]+" | ");
+                else
+                System.out.print(xox[i][j]);
+            }
+            if(i!=2)
+            System.out.println("\n-- -- --");
+        }
+        System.out.println();
+    }
+    void enterx(String player)
+    {
+           if(player.equals("comp"))                    //entering x by the system
+           {
+               for(i=0;i<=9;i++)
+               {
+           position=(int)(Math.random()*9)+1;
+           if(xox[(position-1)/3][(position-1)%3] == '_')
+             {xox[(position-1)/3][(position-1)%3]='x';
+                 break;
+            }  }
+           System.out.println("Here is the move:");
+           print();
+             }
+            else if(player.equals("team"))              //entering x by the player
+            {
+                for(i=1;i<=3;i++)
+                {
+                System.out.println("Enter the position of x");
+                int position=in.nextInt();
+                if(xox[(position-1)/3][(position-1)%3] == '_')
+                {
+                xox[(position-1)/3][(position-1)%3]='x';
+                print();
+                break;
+                }
+                else
+                System.out.println("Invalid Move:( You got "+(3-i)+" more chance");
+            }}}
+    void entero(String player)
+    {
+                                        //entering o by the system
+           if(player.equals("comp"))
+           {
+               for(i=0;i<=9;i++)
+               {
+           position=(int)(Math.random()*9)+1;
+           if(xox[(position-1)/3][(position-1)%3] == '_')
+             {xox[(position-1)/3][(position-1)%3]='o';
+                 break;
+            }}
+             System.out.println("Here is the move:");
+           print();
+           }
+           else if(player.equals("team"))                  //entering o by the player
+            {
+                for(i=1;i<=3;i++)
+                {
+                System.out.println("Enter the position of o");
+                int position=in.nextInt();
+                if(xox[(position-1)/3][(position-1)%3] == '_')
+                {
+                xox[(position-1)/3][(position-1)%3]='o';
+                print();
+                break;
+                }
+                else
+                System.out.println("Invalid Move:( You got "+(3-i)+" more chance");
+            }}}
+    void row(char team,char comp)       //checking the row
+    {
+        for(i=0,j=0;i<3;i++)
+        {
+            if((xox[i][j]==xox[i][j+1]) && (xox[i][j]==xox[i][j+2]) && (xox[i][j]=='x'))
+            {
+                if(team=='x')
+                System.out.println("Well played! You crowned it :)");
+                else if(comp=='x')
+                System.out.println("Good effort! But you got defeated :(");
+                System.exit(0);
+            }
+            else if((xox[i][j]==xox[i][j+1]) && (xox[i][j]==xox[i][j+2]) && (xox[i][j]=='o'))
+            {
+                if(team=='o')
+                System.out.println("Well played! You crowned it :)");
+                else if(comp=='o')
+                System.out.println("Good effort! But you got defeated :(");
+                System.exit(0);
+            }}}
+    void column(char team,char comp)         //checking the column
+    {
+        for(j=0,i=0;j<3;j++)
+        {
+            if((xox[i][j]==xox[i+1][j]) && (xox[i][j]==xox[i+2][j]) && (xox[i][j]=='x'))
+            {
+                if(team=='x')
+                System.out.println("Well played! You crowned it :)");
+                else if(comp=='x')
+                System.out.println("Good effort! But you got defeated :(");
+                System.exit(0);
+            }
+            else if((xox[i][j]==xox[i+1][j]) && (xox[i][j]==xox[i+2][j]) && (xox[i][j]=='o'))
+            {
+                if(team=='o')
+                System.out.println("Well played! You crowned it :)");
+                else if(comp=='o')
+                System.out.println("Good effort! But you got defeated :(");
+                System.exit(0);
+            }}}
+    void leftD(char team,char comp)     //checking the left diagonal
+    {
+        i=0;j=0;        
+        if((xox[i][j]==xox[i+1][j+1]) && (xox[i][j]==xox[i+2][j+2]) && (xox[i][j]=='x'))
+        {
+            if(team=='x')
+            System.out.println("Well played! You crowned it :)");
+            else if(comp=='x')
+            System.out.println("Good effort! But you got defeated :(");
+            System.exit(0);
+        }
+        else if((xox[i][j]==xox[i+1][j+1]) && (xox[i][j]==xox[i+2][j+2]) && (xox[i][j]=='o'))
+            {
+                if(team=='o')
+                System.out.println("Well played! You crowned it :)");
+                else if(comp=='o')
+                System.out.println("Good effort! But you got defeated :(");
+                System.exit(0);
+            }}
+    void rightD(char team,char comp)    //checking the right diagonal
+    {
+        i=0;j=2;
+         if((xox[i][j]==xox[i+1][j-1]) && (xox[i][j]==xox[i+2][j-2]) && (xox[i][j]=='x'))
+          {
+            if(team=='x')
+            System.out.println("Well played! You crowned it :)");
+            else if(comp=='x')
+            System.out.println("Good effort! But you got defeated :(");
+            System.exit(0);
+        }
+        else if((xox[i][j]==xox[i+1][j-1]) && (xox[i][j]==xox[i+2][j-2]) && (xox[i][j]=='o'))
+            {
+                if(team=='o')
+                System.out.println("Well played! You crowned it :)");
+                else if(comp=='o')
+                System.out.println("Good effort! But you got defeated :(");
+                System.exit(0);
+            }}
+    void main()
+    {
+        TicTacToe_MvS game=new TicTacToe_MvS();
+        System.out.println("            Tic Tac Toe");
+        System.out.println("Board Positions");
+        k=1;
+        for(i=0;i<3;i++)                                      
+        {
+            for(j=0;j<3;j++)
+            {
+                if(j!=2)
+                System.out.print(k+" | ");
+                else
+                System.out.print(k);
+                k++;
+            }
+            if(i!=2)
+            System.out.println("\n-- -- --");
+        }
+        System.out.println("\nPick your team: X or O ?");
+        team=Character.toLowerCase(in.next().charAt(0));
+        if(team!='x' && team!='o')
+        {
+            System.out.println("INVALID INPUT!");
+            System.exit(0);
+        }
+        if(team=='x') comp='o';
+        else comp='x';    
+        for(k=1;k<=9;k++)
+        {  
+           if(k%2==1)
+           {
+           if(team=='x')
+           game.enterx("team");
+           else
+           game.enterx("comp");
+           }
+           else
+           {
+            if (team=='o')
+            game.entero("team");
+            else
+            game.entero("comp");
+           }                                 //finding the winner
+           game.row(team,comp);
+           game.column(team,comp);
+           game.leftD(team,comp);
+           game.rightD(team,comp);
+        }
+        System.out.println("The game is a draw :|");
+       }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
