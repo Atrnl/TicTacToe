@@ -1,0 +1,155 @@
+import java.util.*;
+class TicTacToe
+{
+    Scanner in=new Scanner(System.in);
+    char xox[][]=new char[3][3];
+        int i,j;
+        String p1,p2;
+         char win=' ';
+    TicTacToe()
+    {                       //initializing the grid with numbers from 1 to 9
+        char k='1';
+         for(i=0;i<3;i++)
+        {
+            for(j=0;j<3;j++)
+            {
+            xox[i][j]=k;
+            k++;
+            }
+        }
+    }
+    void enterx()
+    {
+           //entering x
+             System.out.println(" Enter the position of x");
+             int x=in.nextInt();
+             String sx=Integer.toString(x);
+             for(i=0;i<3;i++)
+             {
+                 for(j=0;j<3;j++)
+                 {
+                     String sxox=Character.toString(xox[i][j]);
+                     if(sxox.equals(sx))
+                     xox[i][j]='x';                               
+                     System.out.print(xox[i][j]+"\t");
+                 }
+                 System.out.println();
+             } 
+    }
+    void entero()
+    {
+           //entering o
+             System.out.println(" Enter the position of o");
+             int o=in.nextInt();
+             String so=Integer.toString(o);
+             for(i=0;i<3;i++)
+             {
+                 for(j=0;j<3;j++)
+                 {
+                     String sxox=Character.toString(xox[i][j]);
+                     if(sxox.equals(so))
+                     xox[i][j]='o';                
+                     System.out.print(xox[i][j]+"\t");
+                 }
+                 System.out.println();
+             }
+    }
+        void main()
+    {
+        TicTacToe game=new TicTacToe();
+        System.out.println("\t\t\t\t    X O X");
+        System.out.println();
+        System.out.println("\t\t\t\t INSTRUCTIONS");
+        System.out.println("* Player-1 will be playing with 'x' and Player-2 will be playing with 'o' *");
+        System.out.println("* The position at which you want to place the 'x' or 'o' must be enetered *");
+        for(i=0;i<3;i++)           //showing the number of the row and the column as:
+                                                              // 1    2    3    
+                                                              // 4    5    6    
+                                                              // 7    8    9
+        {
+            for(j=0;j<3;j++)
+            System.out.print(xox[i][j]+"\t");
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println("Enter the name of the Player-1");
+        p1=in.nextLine();
+        System.out.println("Enter the name of the Player-2");
+        p2=in.nextLine();
+        for(int k=1;k<=9;k++)
+        {  
+           if(k%2==1)
+           game.enterx();
+           else if(k%2==0)
+           game.entero();
+           //finding the winner
+           char p=game.row();
+           if(p=='x' || p=='o')
+           {
+               System.out.println("Congratulations, "+(p=='x'?p1:p2)+"! You won the game :)");
+                            System.exit(0);
+           }
+           
+            char q=game.column();
+           if(q=='x' || q=='o')
+           {
+               System.out.println("Congratulations, "+(q=='x'?p1:p2)+"! You won the game :)");
+                            System.exit(0);
+           }
+           
+           char r=game.leftD();
+           if(r=='x' || r=='o')
+           {
+               System.out.println("Congratulations, "+(r=='x'?p1:p2)+"! You won the game :)");
+                            System.exit(0);
+           }
+           
+           char s=game.rightD();
+           if(s=='x' || s=='o')
+           {
+               System.out.println("Congratulations, "+(s=='x'?p1:p2)+"! You won the game :)");
+                            System.exit(0);
+           }
+           
+        }
+        System.out.println("This game is a draw :|");
+    }
+    char row()       //checking the row
+    {
+        for(i=0,j=0;i<3;i++)
+        {
+            if((int)(xox[i][j])==(int)(xox[i][j+1]) && (int)(xox[i][j])==(int)(xox[i][j+2]))
+            {
+                win=xox[i][j];
+                break;
+            }
+        }
+        return (win);
+    }
+    char column()         //checking the column
+    {
+        for(j=0,i=0;j<3;j++)
+        {
+            if((int)(xox[i][j])==(int)(xox[i+1][j]) && (int)(xox[i][j])==(int)(xox[i+2][j]))
+            {
+                win=xox[i][j];
+                break;
+            }
+        }
+        return (win);
+    }
+    char leftD()     //checking the left diagonal
+    {
+        int i=0,j=0;
+         if((int)(xox[i][j])==(int)(xox[i+1][j+1]) && (int)(xox[i][j])==(int)(xox[i+2][j+2]))
+                        win=xox[i][j];
+        return (win);
+    }
+    char rightD()    //checking the right diagonal
+    {
+        int i=0,j=2;
+         if((int)(xox[i][j])==(int)(xox[i+1][j-1]) && (int)(xox[i][j])==(int)(xox[i+2][j-2]))
+                       win=xox[i][j];
+         return (win);
+    }
+}
