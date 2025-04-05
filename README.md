@@ -5,4 +5,6 @@
 
 
 ## 2. Man vs System
-  djschdsvh
+![image](https://github.com/user-attachments/assets/de35d8d4-9065-4210-b8a6-12bc192f1cad)
+
+![image](https://github.com/user-attachments/assets/fe90509b-7c2f-41f5-9a46-aad92b1cb1b9)
